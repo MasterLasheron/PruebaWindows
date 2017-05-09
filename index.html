@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="js/numprim.js"></script>
+		<script src="js/jquery-2.0.3.min.js" type="text/javascript"</script>
+		<script src="js/phaser.min.js" type="text/javascript"></script>
+		<script src="js/blob.js" type="text/javascript"></script>
+		<script src="js/CanvasToBlob.js" type="text/javascript"></script>
+		<script src="js/filesaver.js" type="text/javascript"></script>
+		<script src="js/phaser.js" type="text/javascript"></script>
+		<script src="js/phaser-viewer.js" type="text/javascript"></script>
+	</head>
+	<body>
+	<script type="text/javascript">
+
+        var IDE_HOOK = false;
+        var VERSION = '2.6.2';
+
+        
+var game = new Phaser.Game(800, 1000, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
+
+function preload() {
+
+    game.load.image('pic', 'assets/Kindred.png');
+
+}
+
+var bmd;
+var area;
+var dropTime = 0;
+
+function create() {
+
+	game.stage.backgroundColor = '#2d2d2d';
+
+	bmd = game.make.bitmapData();
+	bmd.load('pic').cls();
+
+	bmd.addToWorld(game.world.centerX, game.world.centerY, 0.5, 0.5, 2, 2);
+
+	game.stage.smoothed = false;
+
+	area = new Phaser.Rectangle(0, bmd.height, bmd.width, 1);
+
+	dropTime = game.time.now + 250;
+
+}
+
+function update () {
+
+	if (area.y > 0 && game.time.now > dropTime)
+	{
+		for (var y = 0; y < area.y; y++)
+		{
+			bmd.copyRect('pic', area, 0, y);
+		}
+
+		area.y--;
+		dropTime = game.time.now + 25;
+	}
+
+}
+        
+
+        </script>
+	</body>
+</html>

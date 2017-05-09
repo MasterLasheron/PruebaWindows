@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="js/jquery-2.0.3.min.js" type="text/javascript"</script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/numprim.js"></script>
+	</head>
+<body>
+<script language="JavaScript">
+arPrimo = new Array(1,2,3);
+	function primos(numero){
+		for(j=3;j<=numero;j+=2){
+			primo=true;
+			for(i=2;i<arPrimo.length;i++){
+				if(j%arPrimo[i]==0){
+					primo=false;
+					break;
+				}
+			}
+			if(primo==true){
+				arPrimo.push(j);
+			}
+		}
+		return arPrimo.join();
+	}
+	alert(primos(1000));
+</script>
+</body>
+</html>
+
+
